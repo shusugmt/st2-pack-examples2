@@ -9,6 +9,8 @@ workflows:
           - wait_for_input
       wait_for_input:
         action: core.ask
+        input:
+          route: inquiry_debug
         on-complete:
           - fail: "{{ not task('wait_for_input').result.response.continue }}"
           - fail: "{{ task('wait_for_input').result.response is undefined }}"

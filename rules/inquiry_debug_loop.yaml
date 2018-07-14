@@ -1,0 +1,16 @@
+name: inquiry_debug_loop
+enabled: true
+
+trigger:
+  type: core.st2.generic.actiontrigger
+
+criteria:
+  trigger.action_name:
+    type: equals
+    pattern: examples2.inquiry_debug_root
+  trigger.status:
+    type: equals
+    pattern: succeeded
+
+action:
+  ref: examples2.inquiry_debug_root

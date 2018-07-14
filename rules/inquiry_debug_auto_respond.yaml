@@ -1,0 +1,15 @@
+name: inquiry_debug_auto_respond
+enabled: true
+
+trigger:
+  type: core.st2.generic.inquiry
+
+criteria:
+  trigger.route:
+    type: equals
+    pattern: inquiry_debug
+
+action:
+  ref: examples2.inquiry_debug_respond
+  parameters:
+    inquiry_id: "{{ trigger.id }}"
