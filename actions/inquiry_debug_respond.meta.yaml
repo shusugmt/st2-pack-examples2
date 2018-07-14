@@ -1,6 +1,6 @@
 name: inquiry_debug_respond
-runner_type: mistral-v2
-entry_point: workflows/inquiry_debug_respond.yaml
+runner_type: action-chain
+entry_point: chains/inquiry_debug_respond.yaml
 parameters:
   inquiry_id:
     type: string

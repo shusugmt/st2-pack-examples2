@@ -1,0 +1,12 @@
+chain:
+  - name: sleep
+    ref: core.local
+    parameters:
+      cmd: sleep 10
+    on-success: do_respond
+  - name: do_respond
+    ref: st2.inquiry.respond
+    parameters:
+      id: "{{ inquiry_id }}"
+      response:
+        continue: true
