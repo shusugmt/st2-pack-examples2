@@ -1,0 +1,3 @@
+name: inquiry_debug_root
+runner_type: mistral-v2
+entry_point: workflows/inquiry_debug_root.yaml

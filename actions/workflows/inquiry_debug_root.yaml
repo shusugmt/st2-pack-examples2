@@ -1,0 +1,15 @@
+version: '2.0'
+name: examples2.inquiry_debug_root
+workflows:
+  main:
+    tasks:
+      root_t1:
+        action: core.noop
+        on-success:
+          - root_t2
+      root_t2:
+        action: examples2.inquiry_debug_sub1
+        on-success:
+          - root_t3
+      root_t3:
+        action: core.noop

@@ -1,0 +1,3 @@
+name: inquiry_debug_sub1
+runner_type: mistral-v2
+entry_point: workflows/inquiry_debug_sub1.yaml

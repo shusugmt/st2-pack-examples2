@@ -1,0 +1,3 @@
+name: ask_to_proceed
+runner_type: mistral-v2
+entry_point: workflows/ask_to_proceed.yaml

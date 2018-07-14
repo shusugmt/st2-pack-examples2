@@ -1,0 +1,14 @@
+version: '2.0'
+name: examples2.ask_to_proceed
+workflows:
+  main:
+    tasks:
+      dummy_notify:
+        action: core.noop
+        on-success:
+          - wait_for_input
+      wait_for_input:
+        action: core.ask
+        on-complete:
+          - fail: "{{ not task('wait_for_input').result.response.continue }}"
+          - fail: "{{ task('wait_for_input').result.response is undefined }}"

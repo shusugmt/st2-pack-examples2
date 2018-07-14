@@ -1,0 +1,27 @@
+version: '2.0'
+name: examples2.inquiry_debug_sub1
+workflows:
+  main:
+    tasks:
+      sub1_t1:
+        action: core.noop
+        on-success:
+          - sub1_t2
+      sub1_t2:
+        action: core.noop
+        on-success:
+          - sub1_t3
+      sub1_t3:
+        action: core.noop
+        on-success:
+          - sub1_t4
+      sub1_t4:
+        action: examples2.ask_to_proceed
+        on-success:
+          - sub1_t5
+      sub1_t5:
+        action: core.noop
+        on-success:
+          - sub1_t6
+      sub1_t6:
+        action: core.noop
