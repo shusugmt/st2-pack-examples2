@@ -9,6 +9,8 @@ workflows:
           - root_t2
       root_t2:
         action: examples2.inquiry_debug_sub1
+        input:
+          root_execution_id: "{{ env().st2_execution_id }}"
         on-success:
           - root_t3
       root_t3:
