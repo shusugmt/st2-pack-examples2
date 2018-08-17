@@ -1,0 +1,42 @@
+version: '2.0'
+name: examples2.inquiry_debug_respond
+workflows:
+  main:
+    input:
+      - sleep_sec
+      - retry_count
+      - inquiry_id
+      - root_execution_id
+    tasks:
+      entry_point:
+        action: core.local
+        input:
+          cmd: sleep 3
+        publish:
+          counter: "{{ 0 }}"
+        on-success:
+          - check_root_workflow_status
+      check_root_workflow_status:
+        action: st2.executions.get
+        input:
+          id: "{{ _.root_execution_id }}"
+        publish:
+          root_status: "{{ task('check_root_workflow_status').result.result.status }}"
+          counter: "{{ _.counter + 1 }}"
+        on-success:
+          - wait_loop: "{{ _.root_status != 'paused' }}"
+          - do_respond: "{{ _.root_status == 'paused' }}"
+          - fail: "{{ _.counter > _.retry_count }}"
+      wait_loop:
+        action: core.local
+        input:
+          cmd: sleep "{{ _.sleep_sec }}"
+          timeout: "{{ _.sleep_sec + 60 }}"
+        on-complete:
+          - check_root_workflow_status
+      do_respond:
+        action: st2.inquiry.respond
+        input:
+          id: "{{ _.inquiry_id }}"
+          response:
+            continue: true

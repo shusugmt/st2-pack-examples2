@@ -6,10 +6,11 @@ trigger:
 
 criteria:
   trigger.route:
-    type: equals
-    pattern: inquiry_debug
+    type: regex
+    pattern: "[0-9a-f]+"
 
 action:
   ref: examples2.inquiry_debug_respond
   parameters:
     inquiry_id: "{{ trigger.id }}"
+    root_execution_id: "{{ trigger.route }}"

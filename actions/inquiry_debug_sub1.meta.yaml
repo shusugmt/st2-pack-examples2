@@ -1,3 +1,8 @@
 name: inquiry_debug_sub1
 runner_type: mistral-v2
 entry_point: workflows/inquiry_debug_sub1.yaml
+parameters:
+  root_execution_id:
+    description: execution id of the root workflow
+    type: string
+    required: true

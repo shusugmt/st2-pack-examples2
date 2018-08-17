@@ -1,11 +1,18 @@
 name: inquiry_debug_respond
-runner_type: action-chain
-entry_point: chains/inquiry_debug_respond.yaml
+runner_type: mistral-v2
+entry_point: workflows/inquiry_debug_respond.yaml
 parameters:
   sleep_sec:
     type: integer
     required: true
     default: 60
+  retry_count:
+    type: integer
+    required: true
+    default: 10
   inquiry_id:
+    type: string
+    required: true
+  root_execution_id:
     type: string
     required: true

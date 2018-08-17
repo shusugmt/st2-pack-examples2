@@ -2,6 +2,8 @@ version: '2.0'
 name: examples2.inquiry_debug_sub1
 workflows:
   main:
+    input:
+      - root_execution_id
     tasks:
       sub1_t1:
         action: core.noop
@@ -17,6 +19,8 @@ workflows:
           - sub1_t4
       sub1_t4:
         action: examples2.ask_to_proceed
+        input:
+          root_execution_id: "{{ _.root_execution_id }}"
         on-success:
           - sub1_t5
       sub1_t5:
