@@ -1,0 +1,6 @@
+---
+name: orquesta-inquiry
+description: Orquesta workflow contains inquiry action
+runner_type: orquesta
+entry_point: workflows/orquesta-inquiry.yaml
+enabled: true
